@@ -5,56 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booking Movie Ticket</title>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- styles -->
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <div class="container">
-      <div>
-        <input
-          class="input-text"
-          type="text"
-          id="taskInput"
-          placeholder="Editing..."
-        />
-      </div>
-      <div class="semi-container">
-        <div class="movie-title-div">
+    <section class="section_center">
+      <!-- form -->
+      <form class="input_form">
+        <p class="alert"></p>
+        <div class="form_control">
+          <input type="text" id="booking" placeholder="add a task " />
+          <button type="submit" class="submit_btn">submit</button>
+        </div>
+      </form>
+      <!-- booking heading -->
+      <div class="container">
+        <div class="booking_title">
           <h2>Booking Movie Tickets</h2>
         </div>
-        <div class="edit-remove-div">
-          <span><a class="edit" href="#">Edit</a></span>
-          <span><a class="remove" href="#">Remove</a></span>
-        </div>
-        <p class="task-heading">Tasks</p>
-        <ul class="task" id="taskList">
-          <!-- TASK TYPED APPEARS HERE -->
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-        </ul>
-        <div class="task">
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-          <span class="task-text">Set a reminder beforehand</span>
-        </div>
-        <div class="task">
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-          <span class="task-text">Find a location</span>
-        </div>
-        <div class="task">
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-          <span class="task-text">Screenshot the address</span>
-        </div>
-        <div class="task">
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-          <span class="task-text">Book the tickets</span>
-        </div>
-        <div class="task">
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-          <span class="task-text">Find out the parking</span>
-        </div>
-        <div class="task">
-          <img class="task-image" src="resources/Ellipse 1.svg" />
-          <span class="task-text">Call them</span>
+      
+          <button type="submit" class="edit_btn">Edit</button>
+          <button type="submit" class="remove_btn">Remove</button>
         </div>
       </div>
-    </div>
+      <p class="task_heading">Tasks</p>
+
+      <!-- booking list -->
+      <div class="task_container">
+        <div class="container_list"></div>
+        <button class="clear_btn">clear items</button>
+      </div>
+    </section>
+
+    <script src="action.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
