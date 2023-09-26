@@ -43,8 +43,7 @@ function addItem(e) {
     <img src="./Ellipse.png" class="img_btn" />
           <span class="task-text">${value}</span>
         </div>
-        <button type="submit" class="edit_btn">Edit</button>
-        <button type="submit" class="remove_btn">Remove</button>
+      
         <div class="edit_remove_btn">
         <div class="task_content">
           <h5>

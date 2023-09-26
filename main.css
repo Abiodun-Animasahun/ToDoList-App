@@ -353,7 +353,7 @@ li {
   transition: var(--transition);
   margin-top: 1.25rem;
   color: #fff;
-  background: rgb(128, 16, 16);
+  background: rgb(150, 19, 19);
 }
 .clear_btn:hover {
   color: #fff;
