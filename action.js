@@ -4,112 +4,129 @@ const form = document.querySelector(".input_form");
 const alert = document.querySelector(".alert");
 const booking = document.getElementById("booking");
 const submitBtn = document.querySelector(".submit_btn");
-
 const list = document.querySelector(".container_list");
 const container = document.querySelector(".task_container");
 const clearBtn = document.querySelector(".clear_btn");
-
-// display items onload
-window.addEventListener("DOMContentLoaded", setupItems);
-
 // edit option
 let editElement;
 let editFlag = false;
 let editID = "";
+// ****** event listeners **********
 
 // submit form
 form.addEventListener("submit", addItem);
-
-// clear items
+// clear list
 clearBtn.addEventListener("click", clearItems);
+// display items onload
+window.addEventListener("DOMContentLoaded", setupItems);
 
-// ******** Event Listners *********
+// ****** functions **********
+
+// add item
 function addItem(e) {
   e.preventDefault();
   const value = booking.value;
   const id = new Date().getTime().toString();
 
-  if (value && !editFlag) {
+  if (value !== "" && !editFlag) {
     createListItem(id, value);
-    displayAlert("Tasks added to the list", "success");
+    // display alert
+    displayAlert("item added to the list", "success");
     // show container
     container.classList.add("show_container");
-    // add to local storage
+    // set local storage
     addToLocalStorage(id, value);
-    // Set back to default
-    setBackToDefault(id, value);
-  } else if (value && editFlag) {
+    // set back to default
+    setBackToDefault();
+  } else if (value !== "" && editFlag) {
     editElement.innerHTML = value;
-    displayAlert("task successfully changed", "success");
+    displayAlert("value changed successfully", "success");
+
+    // edit  local storage
     editLocalStorage(editID, value);
     setBackToDefault();
   } else {
-    displayAlert("please enter a value", "danger");
+    displayAlert("please enter value", "danger");
   }
 }
+// display alert
 function displayAlert(text, action) {
   alert.textContent = text;
   alert.classList.add(`alert_${action}`);
-
-  //remove alert
+  // remove alert
   setTimeout(function () {
     alert.textContent = "";
     alert.classList.remove(`alert_${action}`);
   }, 1100);
 }
-//clear items
+
+// clear items
 function clearItems() {
-  const items = document.querySelectorAll(".task_list");
+  const items = document.querySelectorAll(".list_item");
   if (items.length > 0) {
     items.forEach(function (item) {
       list.removeChild(item);
     });
   }
   container.classList.remove("show_container");
-  displayAlert("empty list", "success");
+  displayAlert("empty list", "danger");
   setBackToDefault();
   localStorage.removeItem("list");
 }
 
+// delete item
+
 function removeItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   const id = element.dataset.id;
+
   list.removeChild(element);
+
   if (list.children.length === 0) {
     container.classList.remove("show_container");
   }
   displayAlert("item removed", "danger");
+
   setBackToDefault();
   // remove from local storage
   removeFromLocalStorage(id);
 }
-
+// edit item
 function editItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
-  //set edit item
+  // set edit item
   editElement = e.currentTarget.parentElement.previousElementSibling;
-  //set form value
+  // set form value
   booking.value = editElement.innerHTML;
   editFlag = true;
   editID = element.dataset.id;
+  //
   submitBtn.textContent = "edit";
 }
-
-//********Set back to default*********/
+// set backt to defaults
 function setBackToDefault() {
   booking.value = "";
   editFlag = false;
   editID = "";
   submitBtn.textContent = "submit";
 }
-//********Local Storage *******/
+
+// ****** local storage **********
+
+// add to local storage
 function addToLocalStorage(id, value) {
-  const booking = { id, value };
+  const grocery = { id, value };
   let items = getLocalStorage();
-  console.log(items);
-  items.push(booking);
+  items.push(grocery);
   localStorage.setItem("list", JSON.stringify(items));
 }
+
+function getLocalStorage() {
+  return localStorage.getItem("list")
+    ? JSON.parse(localStorage.getItem("list"))
+    : [];
+}
+
 function removeFromLocalStorage(id) {
   let items = getLocalStorage();
 
@@ -121,23 +138,21 @@ function removeFromLocalStorage(id) {
 
   localStorage.setItem("list", JSON.stringify(items));
 }
-function editLocalStorage(id, value) {}
-function getLocalStorage() {
-  return localStorage.getItem("list")
-    ? JSON.parse(localStorage.getItem("list"))
-    : [];
-}
 function editLocalStorage(id, value) {
   let items = getLocalStorage();
 
   items = items.map(function (item) {
     if (item.id === id) {
-      item.values = value;
+      item.value = value;
     }
     return item;
   });
   localStorage.setItem("list", JSON.stringify(items));
 }
+
+// SETUP LOCALSTORAGE.REMOVEITEM('LIST');
+
+// ****** setup items **********
 
 function setupItems() {
   let items = getLocalStorage();
@@ -152,12 +167,9 @@ function setupItems() {
 
 function createListItem(id, value) {
   const element = document.createElement("div");
-
-  //add id
-  const attr = document.createAttribute("data_id");
+  let attr = document.createAttribute("data-id");
   attr.value = id;
   element.setAttributeNode(attr);
-  //add class
   element.classList.add("task_list");
   element.classList.add("task_list_items");
   element.innerHTML = `
@@ -170,41 +182,14 @@ function createListItem(id, value) {
         <button type="submit" class="remove_btn">Remove</button>
       </div>
       </div>
-      <div class="task_content">
-      <h5>
-        Use your phone or something<br />
-        else. But dont forget
-      </h5>
-      <div class="message_room">
-        <button class="reminder_btn">Add reminder</button>
-        <ion-icon name="chatbubble-outline" class="chat_btn"></ion-icon>
-      </div>
-      </div>
+     
   `;
+  // add event listeners to both buttons;
   const removeBtn = element.querySelector(".remove_btn");
-  const editBtn = element.querySelector(".edit_btn");
-  //delete items
   removeBtn.addEventListener("click", removeItem);
+  const editBtn = element.querySelector(".edit_btn");
   editBtn.addEventListener("click", editItem);
+
   // append child
   list.appendChild(element);
 }
-
-//local storage API
-//setItem
-//getItem
-//removeItem
-//save as string
-//localStorage.setItem("babe", JSON.stringify(["item", "item2"]) );
-//const babe = JSON.parse(localStorage.getItem("babe"));
-//console.log(babe);
-//  localStorage.removeItem("babe");
-
-const btns = document.querySelectorAll(".img_btn");
-
-btns.forEach(function (btn) {
-  btn.addEventListener("click", function (e) {
-    const question = e.currentTarget.parentElement.parentElement;
-    question.classList.toggle("show-text");
-  });
-});
