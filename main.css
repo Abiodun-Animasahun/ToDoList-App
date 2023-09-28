@@ -1,6 +1,6 @@
 :root {
   /* dark shades of primary color*/
-  --clr-primary-1: hsl(205, 86%, 17%);
+  --clr-primary-1: hsl(205, 91%, 9%);
   --clr-primary-2: hsl(205, 77%, 27%);
   --clr-primary-3: hsl(205, 72%, 37%);
   --clr-primary-4: hsl(205, 63%, 48%);
@@ -14,7 +14,7 @@
   --clr-primary-10: hsl(205, 100%, 96%);
   /* darkest grey - used for headings */
   --clr-grey-1: hsl(209, 61%, 16%);
-  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-2: hsl(211, 69%, 16%);
   --clr-grey-3: hsl(209, 34%, 30%);
   --clr-grey-4: hsl(209, 28%, 39%);
   /* grey used for paragraphs */
@@ -26,7 +26,7 @@
   --clr-grey-10: hsl(200, 3%, 20%);
   --clr-white: #fff;
   --clr-red-dark: hsl(360, 67%, 44%);
-  --clr-red-light: hsl(360, 71%, 66%);
+  --clr-red-light: hsl(0, 63%, 22%);
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
   --clr-black: #222;
@@ -157,7 +157,7 @@ p {
 #booking {
   padding: 0.45rem;
   padding-left: 1rem;
-  background: var(--clr-grey-8);
+  background-color: #344054;
   border-top-left-radius: var(--radius);
   border-bottom-left-radius: var(--radius);
   border-color: transparent;
@@ -171,8 +171,9 @@ p {
 }
 
 .submit_btn {
-  background: var(--clr-grey-5);
+  background-color: #344054;
   border-color: transparent;
+  border-left-color: #d7d3d3;
   flex: 0 0 5rem;
   display: grid;
   align-items: center;
@@ -188,7 +189,7 @@ p {
   color: var(--clr-white);
 }
 .submit_btn:hover {
-  background: var(--clr-grey-10);
+  background: var(--clr-primary-1);
   color: #fff;
 }
 
@@ -199,7 +200,7 @@ p {
   justify-content: end;
 }
 .edit_btn {
-  background: rgb(99, 108, 99);
+  background: #344054;
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
@@ -215,12 +216,16 @@ p {
   font-size: 0.85rem;
   color: white;
 }
+.edit_btn:hover {
+  background: var(--clr-primary-1);
+}
 .remove_btn {
-  background: rgb(237, 204, 204);
+  background: var(--clr-red-dark);
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
   align-items: center;
+  border-left-color: #d7d3d3;
   padding: 0.2rem;
   text-transform: capitalize;
   letter-spacing: 2px;
@@ -231,6 +236,9 @@ p {
   transition: var(--transition);
   font-size: 0.85rem;
   color: white;
+}
+.remove_btn:hover {
+  background: var(--clr-red-light);
 }
 
 .container {
@@ -292,9 +300,11 @@ input[type="text"] {
   padding-top: 20px;
 }
 .task-text {
-  font-weight: 300;
-  font-size: 20px;
+  font-weight: 200;
+  font-size: 16px;
   padding-top: 13px;
+  position: relative;
+  top: 3px;
 }
 
 .task_content {
@@ -341,7 +351,7 @@ input[type="text"] {
 
 .clear_btn {
   text-transform: capitalize;
-  width: 10rem;
+  width: 8rem;
   height: 1.5rem;
   display: grid;
   align-items: center;
@@ -356,6 +366,7 @@ input[type="text"] {
   margin-top: 1.25rem;
   color: #fff;
   background: rgb(150, 19, 19);
+  border-radius: 8px;
 }
 .clear_btn:hover {
   color: #fff;
