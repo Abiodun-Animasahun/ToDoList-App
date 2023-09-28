@@ -157,7 +157,7 @@ p {
 #booking {
   padding: 0.45rem;
   padding-left: 1rem;
-  background: var(--clr-grey-10);
+  background: var(--clr-grey-8);
   border-top-left-radius: var(--radius);
   border-bottom-left-radius: var(--radius);
   border-color: transparent;
@@ -188,23 +188,23 @@ p {
   color: var(--clr-white);
 }
 .submit_btn:hover {
-  background: rgb(132, 243, 132);
-  color: black;
+  background: var(--clr-grey-10);
+  color: #fff;
 }
 
 .edit_remove_btn {
   display: flex;
-  flex-direction: row;
+  padding-top: 15px;
+  padding-bottom: 10px;
   justify-content: end;
-  padding-right: 50px;
 }
 .edit_btn {
-  background: green;
+  background: rgb(99, 108, 99);
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
   align-items: center;
-  padding: 0.25rem;
+  padding: 0.2rem;
   text-transform: capitalize;
   letter-spacing: 2px;
   border-top-left-radius: var(--radius);
@@ -216,12 +216,12 @@ p {
   color: white;
 }
 .remove_btn {
-  background: red;
+  background: rgb(237, 204, 204);
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
   align-items: center;
-  padding: 0.25rem;
+  padding: 0.2rem;
   text-transform: capitalize;
   letter-spacing: 2px;
   border-top-right-radius: var(--radius);
@@ -296,13 +296,15 @@ input[type="text"] {
   font-size: 20px;
   padding-top: 13px;
 }
-li {
-  padding-bottom: 20px;
-}
 
 .task_content {
   padding-top: 5px;
   padding-left: 30px;
+}
+
+.task_list_items {
+  display: flex;
+  justify-content: space-between;
 }
 
 .reminder_btn {
